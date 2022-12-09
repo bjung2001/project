@@ -172,10 +172,10 @@ void search(attraction* hp) {
             if (!strcmp(temp->name, search->name)) {
                 success = 1;
                 printf("--------------------------------------------\n");
-                printf("놀이기구 이름\t이용 인원\t이용시간\n");
+                printf("놀이기구이름\t이용인원\t이용시간\n");
                 printf("%s\t", temp->name);
                 printf("%d\t", temp->limit);
-                printf("%d\n", temp->time);
+                printf("\t%d\n", temp->time);
                 printf("--------------------------------------------\n");
 
             }
@@ -195,10 +195,10 @@ void search(attraction* hp) {
             if (temp->limit == searchlimit) {
                 success = 1;
                 printf("--------------------------------------------\n");
-                printf("성함\t과목명\t\t학점\t평점\n");
+                printf("놀이기구이름\t이용인원\t이용시간\n");
                 printf("%s\t", temp->name);
                 printf("%d\t", temp->limit);
-                printf("%d\n", temp->time);
+                printf("\t%d\n", temp->time);
                 printf("--------------------------------------------\n");
             }
             temp = temp->next;
@@ -216,10 +216,10 @@ void search(attraction* hp) {
             if (temp->limit == searchtime) {
                 success = 1;
                 printf("--------------------------------------------\n");
-                printf("성함\t\t학점\t평점\n");
+                printf("놀이기구이름\t이용인원\t이용시간\n");
                 printf("%s\t", temp->name);
                 printf("%d\t", temp->limit);
-                printf("%d\n", temp->time);
+                printf("\t%d\n", temp->time);
                 printf("--------------------------------------------\n");
             }
             temp = temp->next;
@@ -242,7 +242,7 @@ void printAll(attraction* hp) {
         printf("놀이기구이름\t이용인원\t이용시간\n");
         printf("%s\t", temp->name);
         printf("%d\t", temp->limit);
-        printf("%d\n", temp->time);
+        printf("\t%d\n", temp->time);
         temp = temp->next;
     }
     printf("--------------------------------------------\n");
