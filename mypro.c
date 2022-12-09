@@ -174,8 +174,8 @@ void search(attraction* hp) {
                 printf("--------------------------------------------\n");
                 printf("놀이기구이름\t이용인원\t이용시간\n");
                 printf("%s\t", temp->name);
-                printf("%d\t", temp->limit);
-                printf("\t%d\n", temp->time);
+                printf("%d\t\t", temp->limit);
+                printf("%d\n", temp->time);
                 printf("--------------------------------------------\n");
 
             }
@@ -197,8 +197,8 @@ void search(attraction* hp) {
                 printf("--------------------------------------------\n");
                 printf("놀이기구이름\t이용인원\t이용시간\n");
                 printf("%s\t", temp->name);
-                printf("%d\t", temp->limit);
-                printf("\t%d\n", temp->time);
+                printf("%d\t\t", temp->limit);
+                printf("%d\n", temp->time);
                 printf("--------------------------------------------\n");
             }
             temp = temp->next;
@@ -218,8 +218,8 @@ void search(attraction* hp) {
                 printf("--------------------------------------------\n");
                 printf("놀이기구이름\t이용인원\t이용시간\n");
                 printf("%s\t", temp->name);
-                printf("%d\t", temp->limit);
-                printf("\t%d\n", temp->time);
+                printf("%d\t\t", temp->limit);
+                printf("%d\n", temp->time);
                 printf("--------------------------------------------\n");
             }
             temp = temp->next;
@@ -241,8 +241,8 @@ void printAll(attraction* hp) {
         printf("--------------------------------------------\n");
         printf("놀이기구이름\t이용인원\t이용시간\n");
         printf("%s\t", temp->name);
-        printf("%d\t", temp->limit);
-        printf("\t%d\n", temp->time);
+        printf("%d\t\t", temp->limit);
+        printf("%d\n", temp->time);
         temp = temp->next;
     }
     printf("--------------------------------------------\n");
