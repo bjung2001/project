@@ -50,10 +50,10 @@ void main()
         }
         switch (num) {
         case 1:
-            add(head, scan_data);
+            printAll(head);
             break;
         case 2:
-            printAll(head);
+            add(head, scan_data);
          case 3:
             search(head);
             break;
@@ -78,8 +78,8 @@ void main()
 void menu()
 {
     printf("*********************************************\n");
-    printf("1. 놀이기구 추가\n");
-    printf("2. 놀이기구 명단\n");
+    printf("1. 놀이기구 명단\n");
+    printf("2. 놀이기구 추가\n");
     printf("3. 놀이기구 검색\n");
     printf("4. 놀이기구 삭제\n");
     printf("5. 나가기\n");
@@ -123,7 +123,7 @@ void del(attraction* hp) {
     scanf("%s", delname);
     strcpy(data->name, delname);
     while (temp != NULL) {
-        if ((!strcmp(temp->name, data->name))) {
+        if (!strcmp(temp->name, data->name)) {
             last->next = temp->next;
             del = temp;
             temp = temp->next;
