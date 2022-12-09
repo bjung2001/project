@@ -53,12 +53,12 @@ void main()
             add(head, scan_data);
             break;
         case 2:
-            del(head);
+            printAll(head);
          case 3:
             search(head);
             break;
         case 4:
-            printAll(head);
+            del(head);
             break;
 
         default:
@@ -79,9 +79,9 @@ void menu()
 {
     printf("*********************************************\n");
     printf("1. 놀이기구 추가\n");
-    printf("2. 놀이기구 삭제\n");
+    printf("2. 놀이기구 명단\n");
     printf("3. 놀이기구 검색\n");
-    printf("4. 놀이기구 명단\n");
+    printf("4. 놀이기구 삭제\n");
     printf("5. 나가기\n");
     printf("*********************************************\n");
     printf("옵션을 선택해주세요: ");
