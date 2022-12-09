@@ -54,6 +54,7 @@ void main()
             break;
         case 2:
             add(head, scan_data);
+            break;
          case 3:
             search(head);
             break;
