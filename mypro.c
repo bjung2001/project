@@ -185,8 +185,7 @@ void search(attraction* hp) {
             printf("--------------------------------------------\n");
             printf("해당 놀이기구가 없습니다.\n");
             printf("--------------------------------------------\n");
-        }
-        free(search);
+        }       free(search);
         break;
     case 2:
         printf("이용인원으로 찾기: ");
@@ -247,6 +246,96 @@ void printAll(attraction* hp) {
     }
     printf("--------------------------------------------\n");
 }
+
+
+// 연결된 목록의 시작 부분에 새 노드를 삽입하는 도우미 함수(limit)
+void push_l(struct attraction** head, int data)
+{
+    struct attraction* newNode = (struct attraction*)malloc(sizeof(struct attraction));
+    newNode->limit = data;
+    newNode->next = *head;
+    *head = newNode;
+}
+
+// 연결된 목록의 시작 부분에 새 노드를 삽입하는 도우미 함수(time)
+void push_t(struct attraction** head, int data)
+{
+    struct attraction* newNode = (struct attraction*)malloc(sizeof(struct attraction));
+    newNode->time = data;
+    newNode->next = *head;
+    *head = newNode;
+}
+ 
+// 주어진 노드의 올바른 정렬 위치에 주어진 노드를 삽입하는 함수
+// 오름차순으로 정렬된 리스트
+void sortedInsert_l(struct attraction** head, struct attraction* newNode)
+{
+    struct attraction dummy;
+    struct attraction* current = &dummy;
+    dummy.next = *head;
+ 
+    while (current->next != NULL && current->next->limit < newNode->limit) {
+        current = current->next;
+    }
+ 
+    newNode->next = current->next;
+    current->next = newNode;
+    *head = dummy.next;
+}
+ 
+// 목록이 주어지면 정렬된 순서로 변경합니다(`sortedInsert()` 사용).
+void insertSort_l(struct attraction** head)
+{
+    struct attraction* result = NULL;     // 여기에 답을 작성합니다.
+    struct attraction* current = *head;   // 원래 목록을 반복합니다.
+    struct attraction* next;
+ 
+    while (current != NULL)
+    {
+        // 까다로운: 변경하기 전에 다음 포인터를 확인합니다.
+        next = current->next;
+ 
+        sortedInsert(&result, current);
+        current = next;
+    }
+ 
+    *head = result;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 void loadfile(attraction* hp) {
@@ -317,3 +406,5 @@ void Exit(attraction* hp)
     fclose(fp);
     return;
 }
+
+*/
