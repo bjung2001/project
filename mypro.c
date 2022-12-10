@@ -248,6 +248,45 @@ void printAll(attraction* hp) {
 }
 
 
+void sorting(attraction* hp) {
+    int select;
+    
+    printf("*****************************");
+    printf("무엇으로 정렬하시겠습니까?\n");
+    printf("1. 탑승인원\n");
+    printf("2. 탑승시간\n");
+    printf("*****************************");
+    printf("선택: ");
+    scanf("%d", &select);
+    switch (select)
+    {
+    case 1:
+
+        break;
+    
+    default:
+        break;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // 연결된 목록의 시작 부분에 새 노드를 삽입하는 도우미 함수(limit)
 void push_l(struct attraction** head, int data)
 {
@@ -282,7 +321,23 @@ void sortedInsert_l(struct attraction** head, struct attraction* newNode)
     current->next = newNode;
     *head = dummy.next;
 }
+
+
+void sortedInsert_t(struct attraction** head, struct attraction* newNode)
+{
+    struct attraction dummy;
+    struct attraction* current = &dummy;
+    dummy.next = *head;
  
+    while (current->next != NULL && current->next->time < newNode->time) {
+        current = current->next;
+    }
+ 
+    newNode->next = current->next;
+    current->next = newNode;
+    *head = dummy.next;
+}
+
 // 목록이 주어지면 정렬된 순서로 변경합니다(`sortedInsert()` 사용).
 void insertSort_l(struct attraction** head)
 {
@@ -295,12 +350,55 @@ void insertSort_l(struct attraction** head)
         // 까다로운: 변경하기 전에 다음 포인터를 확인합니다.
         next = current->next;
  
-        sortedInsert(&result, current);
+        sortedInsert_l(&result, current);
         current = next;
     }
  
     *head = result;
 }
+
+void insertSort_t(struct attraction** head)
+{
+    struct attraction* result = NULL;     // 여기에 답을 작성합니다.
+    struct attraction* current = *head;   // 원래 목록을 반복합니다.
+    struct attraction* next;
+ 
+    while (current != NULL)
+    {
+        // 까다로운: 변경하기 전에 다음 포인터를 확인합니다.
+        next = current->next;
+ 
+        sortedInsert_t(&result, current);
+        current = next;
+    }
+ 
+    *head = result;
+}
+
+void printList_l(struct attraction* head)
+{
+    struct attraction* ptr = head;
+    while (ptr)
+    {
+        printf("%d —> ", ptr->limit);
+        ptr = ptr->next;
+    }
+ 
+    printf("NULL");
+}
+
+void printList_t(struct attraction* head)
+{
+    struct attraction* ptr = head;
+    while (ptr)
+    {
+        printf("%d —> ", ptr->time);
+        ptr = ptr->next;
+    }
+ 
+    printf("NULL");
+}
+
 
 
 
