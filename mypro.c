@@ -27,23 +27,7 @@ void Exit(attraction* hp); // 노드의 데이터를 파일에 저장해주는 �
 
 
 
-// 연결된 목록의 시작 부분에 새 노드를 삽입하는 도우미 함수(limit)
-void push_l(struct attraction** head, int data)
-{
-    struct attraction* newNode = (struct attraction*)malloc(sizeof(struct attraction));
-    newNode->limit = data;
-    newNode->next = *head;
-    *head = newNode;
-}
 
-// 연결된 목록의 시작 부분에 새 노드를 삽입하는 도우미 함수(time)
-void push_t(struct attraction** head, int data)
-{
-    struct attraction* newNode = (struct attraction*)malloc(sizeof(struct attraction));
-    newNode->time = data;
-    newNode->next = *head;
-    *head = newNode;
-}
  
 // 주어진 노드의 올바른 정렬 위치에 주어진 노드를 삽입하는 함수
 // 오름차순으로 정렬된 리스트
@@ -78,16 +62,15 @@ void sortedInsert_t(struct attraction** head, struct attraction* newNode)
     *head = dummy.next;
 }
 
-// 목록이 주어지면 정렬된 순서로 변경합니다(`sortedInsert()` 사용).
+// 목록이 주어지면 정렬된 순서로 변경.
 void insertSort_l(struct attraction** head)
 {
-    struct attraction* result = NULL;     // 여기에 답을 작성합니다.
-    struct attraction* current = *head;   // 원래 목록을 반복합니다.
+    struct attraction* result = NULL;     
+    struct attraction* current = *head;   
     struct attraction* next;
  
     while (current != NULL)
     {
-        // 까다로운: 변경하기 전에 다음 포인터를 확인합니다.
         next = current->next;
  
         sortedInsert_l(&result, current);
@@ -99,13 +82,12 @@ void insertSort_l(struct attraction** head)
 
 void insertSort_t(struct attraction** head)
 {
-    struct attraction* result = NULL;     // 여기에 답을 작성합니다.
-    struct attraction* current = *head;   // 원래 목록을 반복합니다.
+    struct attraction* result = NULL;     
+    struct attraction* current = *head;  
     struct attraction* next;
  
     while (current != NULL)
     {
-        // 까다로운: 변경하기 전에 다음 포인터를 확인합니다.
         next = current->next;
  
         sortedInsert_t(&result, current);
@@ -115,60 +97,22 @@ void insertSort_t(struct attraction** head)
     *head = result;
 }
 
-void printList_l(struct attraction* head)
-{
-    struct attraction* ptr = head;
-    while (ptr)
-    {
-        printf("%s -> ", ptr->name);
-        printf("%d —> ", ptr->limit);
-        printf("%d -> ", ptr->time);
-        ptr = ptr->next;
-    }
- 
-    printf("NULL");
-}
-
-void printList_t(struct attraction* head)
-{
-    struct attraction* ptr = head;
-    while (ptr)
-    {
-        printf("%s -> ", ptr->name);
-        printf("%d —> ", ptr->limit);
-        printf("%d -> ", ptr->time);
-        ptr = ptr->next;
-    }
- 
-    printf("NULL");
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+//메인 함수
 
 void main()
 {
     attraction* head = (attraction*)malloc(sizeof(attraction)); //헤드 노드 생성
     head->next = NULL; //초기화
     int num; //메뉴에서 선택한 값 저장
+    char* (*fp)(void);
+    fp = scan_data;
 
     loadfile(head); //파일정보노드에 입력
 
     while (1) {
         menu();
         scanf("%d", &num);
-        if (num == 6) {
+        if (num == 7) {
             Exit(head);
             break;
         }
@@ -177,7 +121,7 @@ void main()
             printAll(head);
             break;
         case 2:
-            add(head, scan_data);
+            add(head, fp);
             break;
          case 3:
             search(head);
@@ -187,6 +131,10 @@ void main()
             break;
         case 5:
             insertSort_l(&head);
+            printAll(head);
+            break;
+        case 6:
+            insertSort_t(&head);
             printAll(head);
             break;
         default:
@@ -210,8 +158,9 @@ void menu()
     printf("2. 놀이기구 추가\n");
     printf("3. 놀이기구 검색\n");
     printf("4. 놀이기구 삭제\n");
-    printf("5. 정렬\n");
-    printf("6. 나가기\n");
+    printf("5. 이용인원 오름차순 정렬\n");
+    printf("6. 이용시간 오름차순 정렬\n");
+    printf("7. 나가기\n");
     printf("*********************************************\n");
     printf("옵션을 선택해주세요: ");
     return;
