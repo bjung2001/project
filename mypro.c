@@ -15,22 +15,21 @@ char* scan_data(void) {
     return data;
 }
 
-void menu(); //메뉴를 출력해주는 함수
-char* scan_data(void); // 문자열을 입력값으로 받아 리턴해주는 함수
-void printAll(attraction* hp); // 노드에 연결된 정보를 출력해주는 함수
-void add(attraction* hp, char*(*fp) (void)); // 노드에 정보를 추가해주는 함수
-void search(attraction* hp); // 노드로 검색하는 함수
-void del(attraction* hp); // 노드를 삭제하는 함수
-void loadfile(attraction* hp); // 파일에서 데이터를 노드에 저장해주는 함수
-void Exit(attraction* hp); // 노드의 데이터를 파일에 저장해주는 함수
+
+
+void menu(); 
+char* scan_data(void); 
+void printAll(attraction* hp); 
+void add(attraction* hp, char*(*fp) (void)); 
+void search(attraction* hp); 
+void del(attraction* hp); 
+void loadfile(attraction* hp); 
+void Exit(attraction* hp);
 
 
 
-
-
- 
 // 주어진 노드의 올바른 정렬 위치에 주어진 노드를 삽입하는 함수
-// 오름차순으로 정렬된 리스트
+// 오름차순으로 정렬
 void sortedInsert_l(struct attraction** head, struct attraction* newNode)
 {
     struct attraction dummy;
@@ -101,13 +100,14 @@ void insertSort_t(struct attraction** head)
 
 void main()
 {
-    attraction* head = (attraction*)malloc(sizeof(attraction)); //헤드 노드 생성
-    head->next = NULL; //초기화
-    int num; //메뉴에서 선택한 값 저장
-    char* (*fp)(void);
+    attraction* head = (attraction*)malloc(sizeof(attraction)); 
+    head->next = NULL;
+    int num; 
+    
+    char* (*fp)(void);//함수 포인터를 인자로 전달하기 위한 코드
     fp = scan_data;
 
-    loadfile(head); //파일정보노드에 입력
+    loadfile(head); 
 
     while (1) {
         menu();
@@ -168,16 +168,16 @@ void menu()
 
 //놀이기구 추가 함수
 void add(attraction* hp, char*(*fp) (void)) {
-    char* info; // 문자열을 입력받는 함수를 호출한다.
-    attraction* temp = (attraction*)malloc(sizeof(attraction)); // 입력받은 값을 저장할 노드를 생성한다.
+    char* info; 
+    attraction* temp = (attraction*)malloc(sizeof(attraction)); 
     attraction* last;
     last = hp;
     while (last->next != NULL) {
         last = last->next;
     }
-    printf("--------------------추가--------------------\n");
+    printf("-------------------추가-----------------\n");
     printf("놀이기구명: ");
-    info = scan_data(); // 문자열을 입력받을때, 호출한 함수를 이용하여 노드의 값으로 넘긴다.
+    info = scan_data(); 
     strcpy(temp->name, info);
     printf("이용 인원: ");
     scanf("%d", &temp->limit);
@@ -216,7 +216,7 @@ void del(attraction* hp) {
         printf("삭제되었습니다.\n");
     }
     else {
-        printf("존재하지 않는 데이터입니다.\n");
+        printf("없는 데이터입니다.\n");
     }
 }
 
@@ -325,25 +325,19 @@ void printAll(attraction* hp) {
 }
 
 
-
-
-
-
-
 void loadfile(attraction* hp) {
-    //파일 내용 연결리스트에 저장
     char names[50];
     int limit;
     int time;
-    //파일 오픈
+    
     FILE* fp;
     fp = fopen("attractionlist.dat", "a+");
-    //파일 실행 실패
+    
     if (fp == NULL) {
         printf("failed to open file\n");
         return;
     }
-    //파일 실행 성공
+    
     attraction* temp;
     attraction* last;
     temp = (attraction*)malloc(sizeof(attraction));
@@ -358,7 +352,7 @@ void loadfile(attraction* hp) {
         last = temp;
     }
     else free(temp);
-    //temp뒤에 temp생성
+    
     while (1) {
         temp = (attraction*)malloc(sizeof(attraction));
         fscanf(fp, "%s %d %d", names, &limit, &time);
@@ -378,7 +372,7 @@ void loadfile(attraction* hp) {
     fclose(fp);
 }
 
-//파일에 데이터 업데이트
+
 void Exit(attraction* hp)
 {
     attraction* temp = hp->next;
