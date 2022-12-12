@@ -17,7 +17,7 @@ char* scan_data(void) {
 
 
 
-void menu(); 
+void menu();            
 char* scan_data(void); 
 void printAll(attraction* hp); 
 void add(attraction* hp, char*(*fp) (void)); 
@@ -46,21 +46,6 @@ void sortedInsert_l(struct attraction** head, struct attraction* newNode)
 }
 
 
-void sortedInsert_t(struct attraction** head, struct attraction* newNode)
-{
-    struct attraction dummy;
-    struct attraction* current = &dummy;
-    dummy.next = *head;
- 
-    while (current->next != NULL && current->next->time < newNode->time) {
-        current = current->next;
-    }
- 
-    newNode->next = current->next;
-    current->next = newNode;
-    *head = dummy.next;
-}
-
 // 목록이 주어지면 정렬된 순서로 변경.
 void insertSort_l(struct attraction** head)
 {
@@ -78,6 +63,22 @@ void insertSort_l(struct attraction** head)
  
     *head = result;
 }
+
+void sortedInsert_t(struct attraction** head, struct attraction* newNode)
+{
+    struct attraction dummy;
+    struct attraction* current = &dummy;
+    dummy.next = *head;
+ 
+    while (current->next != NULL && current->next->time < newNode->time) {
+        current = current->next;
+    }
+ 
+    newNode->next = current->next;
+    current->next = newNode;
+    *head = dummy.next;
+}
+
 
 void insertSort_t(struct attraction** head)
 {
@@ -289,7 +290,7 @@ void search(attraction* hp) {
         printf("이용시간으로 찾기: ");
         scanf("%d", &searchtime);
         while (temp != NULL) {
-            if (temp->limit == searchtime) {
+            if (temp->time == searchtime) {
                 success = 1;
                 printf("--------------------------------------------\n");
                 printf("놀이기구이름\t이용인원\t이용시간\n");
