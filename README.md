@@ -1,6 +1,6 @@
 # Attraction Manager (C)
 
-C 프로그래밍 과제 — 연결 리스트(linked list)로 구현한 놀이기구 관리 콘솔 프로그램.
+연결 리스트(linked list)로 구현한 놀이기구 관리 콘솔 프로그램.
 
 ## 기능
 
